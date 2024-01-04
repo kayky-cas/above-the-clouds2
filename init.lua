@@ -8,6 +8,7 @@ vim.o.relativenumber = true
 vim.o.number = true
 
 vim.cmd("set clipboard+=unnamedplus")
+vim.cmd("set guicursor=i:block")
 
 -- Keymaps
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", {})

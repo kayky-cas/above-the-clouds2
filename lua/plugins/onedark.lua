@@ -1,15 +1,15 @@
 return {
-    "folke/tokyonight.nvim",
+    "navarasu/onedark.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
         local opts = {
-            style = "night",
+            style = "darker",
             transparent = true,
         }
 
-        require("tokyonight").setup(opts)
+        require("onedark").setup(opts)
 
-        vim.cmd([[colorscheme tokyonight]])
+        vim.cmd([[colorscheme onedark]])
     end,
 }

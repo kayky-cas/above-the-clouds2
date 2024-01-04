@@ -12,6 +12,24 @@ return {
             -- install jsregexp (optional!).
             build = "make install_jsregexp",
         },
+
+        {
+            "zbirenbaum/copilot-cmp",
+            config = function()
+                require("copilot_cmp").setup()
+            end,
+        },
+        {
+            "zbirenbaum/copilot.lua",
+            cmd = "Copilot",
+            event = "InsertEnter",
+            config = function()
+                require("copilot").setup({
+                    suggestion = { enabled = false },
+                    panel = { enabled = false },
+                })
+            end,
+        },
     },
     config = function()
         local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -67,6 +85,7 @@ return {
                 -- { name = 'ultisnips' }, -- For ultisnips users.
                 -- { name = 'snippy' }, -- For snippy users.
                 { name = "path" },
+                { name = "copilot" },
             }, {
                 { name = "buffer" },
             }),
