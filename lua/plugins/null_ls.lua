@@ -12,6 +12,7 @@ return {
         null_ls.setup({
             sources = {
                 builtins.formatting.stylua,
+                builtins.formatting.ocamlformat,
             },
             on_attach = function(client, bufnr)
                 if client.supports_method("textDocument/formatting") then
