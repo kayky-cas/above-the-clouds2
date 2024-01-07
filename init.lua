@@ -1,4 +1,3 @@
--- Options
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
@@ -10,7 +9,6 @@ vim.o.number = true
 vim.cmd("set clipboard+=unnamedplus")
 vim.cmd("set guicursor=i:block")
 
--- Keymaps
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", {})
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", {})
 vim.keymap.set("n", "<leader>Q", "<cmd>q!<cr>", {})
@@ -25,7 +23,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
