@@ -43,23 +43,27 @@ end
 
 return {
     {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = {
-            "williamboman/mason.nvim",
-            "neovim/nvim-lspconfig",
-            { "folke/neodev.nvim", opts = {} },
-        },
+        "folke/neodev.nvim",
+        opts = {},
         config = function()
             require("neodev").setup({
                 -- add any options here, or leave empty to use the default settings
             })
-
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "neovim/nvim-lspconfig",
+        },
+        config = function()
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
             require("mason").setup()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "rust_analyzer" },
+                ensure_installed = { "lua_ls", "rust_analyzer", "ocamllsp" },
             })
 
             require("mason-lspconfig").setup_handlers({
