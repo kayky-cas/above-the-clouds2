@@ -16,7 +16,7 @@ return {
     config = function()
         require("telescope").setup({
             defaults = {
-                file_ignore_patterns = { "node_modules", ".git", "target" },
+                file_ignore_patterns = { "node_modules", ".git", "target", "_build" },
             },
         })
 
