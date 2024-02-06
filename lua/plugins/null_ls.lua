@@ -13,6 +13,7 @@ return {
             sources = {
                 builtins.formatting.stylua,
                 builtins.formatting.ocamlformat,
+                builtins.formatting.rustfmt,
             },
             on_attach = function(client, bufnr)
                 if client.supports_method("textDocument/formatting") then

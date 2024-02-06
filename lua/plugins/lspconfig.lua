@@ -23,6 +23,9 @@ local on_attach = function(_, bufnr)
     nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
     nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+
     -- See `:help K` for why this keymap
     nmap("K", vim.lsp.buf.hover, "Hover Documentation")
     nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
@@ -63,8 +66,18 @@ return {
 
             require("mason").setup()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "rust_analyzer", "ocamllsp" },
+                ensure_installed = { "lua_ls", "rust_analyzer", "ocamllsp", "tsserver", "clangd" },
             })
+
+            local servers = {
+                rust_analyzer = {
+                    ["rust-analyzer"] = {
+                        checkOnSave = {
+                            command = "clippy",
+                        },
+                    },
+                },
+            }
 
             require("mason-lspconfig").setup_handlers({
                 -- The first entry (without a key) will be the default handler
@@ -74,6 +87,7 @@ return {
                     require("lspconfig")[server_name].setup({
                         capabilities = capabilities,
                         on_attach = on_attach,
+                        settings = servers[server_name],
                     })
                 end,
                 -- Next, you can provide a dedicated handler for specific servers.
